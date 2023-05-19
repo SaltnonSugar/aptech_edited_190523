@@ -1,21 +1,17 @@
-# Ping CRM
-
-A demo application to illustrate how Inertia.js works.
-
-![](https://raw.githubusercontent.com/inertiajs/pingcrm/master/screenshot.png)
 
 ## Installation
 
 Clone the repo locally:
 
 ```sh
-git clone https://github.com/inertiajs/pingcrm.git pingcrm
-cd pingcrm
+git clone https://github.com/SaltnonSugar/aptech_edited_190523.git aptech_pj
+cd aptech_pj
 ```
 
 Install PHP dependencies:
 
 ```sh
+composer update
 composer install
 ```
 

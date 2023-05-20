@@ -24,7 +24,16 @@ class ProductFormRequest extends FormRequest
     public function rules()
     {
         return [
+           
             'catalog_ID' => [
+                'required',
+                'integer'
+            ],
+            'color_ID' => [
+                'required',
+                'integer'
+            ],
+            'size_ID' => [
                 'required',
                 'integer'
             ],
@@ -47,12 +56,6 @@ class ProductFormRequest extends FormRequest
             ],
             'image' => [
                 'nullable',
-                // 'required',
-                // 'image',
-                // 'file_extension:jpeg,png',
-                // 'mimes:jpeg,png',
-                // 'mimetypes:image/jpeg,image/png',
-                // 'max:2048'
             ],
         ];
     }

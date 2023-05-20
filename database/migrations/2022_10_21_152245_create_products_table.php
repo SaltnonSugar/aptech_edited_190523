@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('size_ID');
             $table->unsignedBigInteger('color_ID');
             $table->string('name');
-            $table->decimal('price',9,3)->unsigned();
+            $table->decimal('price',14,2)->unsigned();
             $table->integer('amount');
             $table->text('description');
             $table->timestamps();

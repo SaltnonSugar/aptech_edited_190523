@@ -12,6 +12,8 @@ use App\Models\Catalog;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\Rate;
+use App\Models\Size;
+use App\Models\Color;
 
 class AdminProductsController extends Controller
 {
@@ -57,7 +59,9 @@ class AdminProductsController extends Controller
     {
         //admin thêm sản phẩm
         $catalogs = Catalog::all();
-        return view('/admin/admin_products/products_create', compact('catalogs'));
+        $sizes = Size::all();
+        $colors = Color::all();
+        return view('/admin/admin_products/products_create', compact('catalogs', 'sizes', 'colors'));
     }
 
     /**
@@ -76,8 +80,10 @@ class AdminProductsController extends Controller
             'description' => $validatedData['description'],
             'price' => $validatedData['price'],
             'amount' => $validatedData['amount'],
+            'size_ID' => $validatedData['size_ID'],
+            'color_ID' => $validatedData['color_ID'],
         ]);
-        
+       
         if($request->hasFile('image')){
             $uploadPath = './img/product/';
 
@@ -119,7 +125,9 @@ class AdminProductsController extends Controller
     {
         $products = Product::findOrFail($id);
         $catalogs = Catalog::all();
-        return view('/admin/admin_products/products_update', compact('products', 'catalogs'));
+        $sizes = Size::all();
+        $colors = Color::all();
+        return view('/admin/admin_products/products_update', compact('products', 'catalogs', 'sizes', 'colors'));
     }
 
     /**
@@ -141,6 +149,8 @@ class AdminProductsController extends Controller
             'description' => $validatedData['description'],
             'price' => $validatedData['price'],
             'amount' => $validatedData['amount'],
+            'size_ID' => $validatedData['size_ID'],
+            'color_ID' => $validatedData['color_ID'],
            ]);
            if($request->hasFile('image')){
                 $uploadPath = './img/product/';

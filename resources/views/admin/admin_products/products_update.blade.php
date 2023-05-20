@@ -39,6 +39,22 @@
           </select>
       </div>
       <div class="form-group">
+        <label for="color">Màu sắc sản phẩm:</label>
+        <select name="color_ID" class="form-control">
+          @foreach ($colors as $color)
+          <option value="{{ $color->id }}">{{ $color->color_name }}</option>
+          @endforeach
+        </select>
+        </div>
+        <div class="form-group">
+          <label for="size">Dung lượng sản phẩm:</label>
+          <select name="size_ID" class="form-control">
+            @foreach ($sizes as $size)
+            <option value="{{ $size->id }}">{{ $size->size_name }}</option>
+            @endforeach
+          </select>
+      </div>
+      <div class="form-group">
         <label for="name">Tên sản phẩm:</label>
         <input type="" class="form-control" id="name" value="{{ $products->name }}" name="name">
       </div>

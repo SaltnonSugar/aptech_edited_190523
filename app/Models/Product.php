@@ -15,7 +15,10 @@ class Product extends Model
         'name',
         'price',
         'description',
-        'amount'
+        'amount',
+        'size_ID',
+        'color_ID',
+        'catalog_ID',
     ];
 
     public function productImages() {
@@ -25,4 +28,13 @@ class Product extends Model
     public function catalog() {
         return $this->belongsTo(Catalog::class, 'catalog_ID', 'id');
     }
+
+    // public function size() {
+    //     return $this->belongsTo(Size::class, 'size_ID', 'id');
+    // }
+
+    // public function color() {
+    //     return $this->belongsTo(Color::class, 'color_ID', 'id');
+    // }
+
 }

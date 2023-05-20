@@ -12,6 +12,13 @@ return new class extends Migration {
      */
     public function up()
     {
+        Schema::table('products', function (Blueprint $table) {
+    
+            $table->foreign('catalog_id')->references('id')->on('catalog');
+            $table->foreign('color_id')->references('id')->on('color');
+            $table->foreign('size_id')->references('id')->on('size');
+        });
+    
         Schema::table('order', function (Blueprint $table) {
             // Table "order"=>"users"
             $table->foreign('user_id')->references('id')->on('users');
@@ -28,7 +35,6 @@ return new class extends Migration {
         });
        
         Schema::table('image_products', function (Blueprint $table) {
-            
             $table->foreign('product_id')->references('id')->on('products');
         });
     }

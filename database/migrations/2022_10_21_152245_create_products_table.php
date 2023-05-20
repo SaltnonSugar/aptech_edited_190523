@@ -16,8 +16,10 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('catalog_ID');
+            $table->unsignedBigInteger('size_ID');
+            $table->unsignedBigInteger('color_ID');
             $table->string('name');
-            $table->double('price',10,2)->unsigned();
+            $table->decimal('price',9,3)->unsigned();
             $table->integer('amount');
             $table->text('description');
             $table->timestamps();

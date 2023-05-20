@@ -16,10 +16,6 @@ return new class extends Migration
         Schema::create('order', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_ID');
-            $table->string('user_name');
-            $table->string('user_address');
-            $table->string('user_phone');
-            $table->string('user_email');
             $table->decimal('total',15,0);
             $table->integer('accept_status')->default('0');
             $table->integer('payment_status')->default('0');

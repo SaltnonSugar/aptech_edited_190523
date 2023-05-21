@@ -29,10 +29,6 @@ class CheckOutController extends Controller
         //Lưu thông tin order
         $order = new Order();
         $order->user_ID        = $user->id;
-        $order->user_name      = $request->input('user_name');
-        $order->user_address   = $request->input('user_address');
-        $order->user_phone     = $request->input('user_phone');
-        $order->user_email     = $request->input('user_email');
         $order->payment_method = $request->input('payment_method');
         $order->total          = \Cart::getTotal();
         $order->save();
@@ -52,10 +48,10 @@ class CheckOutController extends Controller
             $product->save();
         }
         //gui mail xac nhan
-        Mail::send('mails.order_mail', compact('order'), function($email) use($order){ 
-            $email->subject('Xác nhận đơn hàng') ;
-            $email->to($order->user_email, $order->user_name);
-        });
+        // Mail::send('mails.order_mail', compact('order'), function($email) use($order){ 
+        //     $email->subject('Xác nhận đơn hàng') ;
+        //     $email->to($order->user_email, $order->user_name);
+        // });
         
         //Huy don hang
         \Cart::clear();

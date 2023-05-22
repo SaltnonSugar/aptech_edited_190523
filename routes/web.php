@@ -40,3 +40,5 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 //Lọc sản phẩm
 Route::get('/filter', [ProductController::class, 'filter'])->name('filter');
+//Sắp xếp theo giá
+Route::get('/sort', [ProductController::class, 'sort'])->name('sort');

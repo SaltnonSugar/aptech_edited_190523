@@ -28,7 +28,7 @@ class ProductController extends Controller
     {
         //chi tiet san pham
 
-        
+
         $products = Product::findOrFail($id);
 
         $ratings = Rate::where('product_ID', $products->id)->get();
@@ -42,20 +42,15 @@ class ProductController extends Controller
         return view('/client/product_detail', compact('products', 'related_products', 'ratings', 'rating_value'));
     }
 
-    public function search(Request $request)
-    {
-        $search = $request->input('search');
-        $catalogs = Catalog::all();
-        $products = Product::query()
-            ->where('name', 'LIKE', "%{$search}%")
-            ->orWhere('price', 'LIKE', "%{$search}%")
-            ->get();
-        return view('/client/products', compact('products', 'search', 'catalogs'));
-    }
     public function filter(Request $request)
     {
         $catalogs = Catalog::all();
         $query = Product::query();
+        //search name of product
+        if ($request->filled('search')) {
+            $search = $request->input('search');
+            $query->where('name', 'LIKE', "%{$search}%");
+        }
         //filter catalog
         if ($request->filled('catalog')) {
             $query->where('catalog_ID', $request->input('catalog'));
@@ -68,13 +63,24 @@ class ProductController extends Controller
         $filterRatingProductID  = Rate::select('product_ID', DB::raw('round(avg(star)) as avgstar'))
                            ->groupBy('product_ID')
                            ->having('avgstar', '=', $request->input('rating'));
-        if ($request->filled('rating')) {
+        if ($request->filled('rating') &&  $filterRatingProductID->count() != 0) {
             $query->where('id', $filterRatingProductID->pluck('product_ID'));
         }
        
-
-
         $products = $query->get();
+        return view('/client/products', compact('products', 'catalogs'));
+    }
+    public function sort(Request $request) {
+        $catalogs = Catalog::all();
+        if ($request->input('sort') == 'desc') {
+            $products = Product::query()->orderByDesc('price')->get();
+        } else if ($request->input('sort') == 'asc') {
+            $products = Product::query()->orderBy('price')->get();
+        } else if ($request->input('sort') == 'latest') {
+            $products = Product::query()->orderBy('created_at', 'desc')->get();
+        } else {
+            $products = Product::all();
+        }
         return view('/client/products', compact('products', 'catalogs'));
     }
 }

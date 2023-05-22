@@ -52,23 +52,29 @@ class ProductController extends Controller
             ->get();
         return view('/client/products', compact('products', 'search', 'catalogs'));
     }
-
-    public function locsanpham(Request $request)
+    public function filter(Request $request)
     {
-        $search = $request->search;
-
         $catalogs = Catalog::all();
-        $products = Product::query();
-        $products = $products->where('name', 'LIKE', "%{$search}%");
-        for ($i = 0; $i < count($catalogs) - 1; $i++) {
-            if ($i == 0)
-                $products = $products->where('catalog_ID', '=', $request->factory);
-            else
-                $products = $products->orWhere('catalog_ID', '=', $request->factory);
+        $query = Product::query();
+        //filter catalog
+        if ($request->filled('catalog')) {
+            $query->where('catalog_ID', $request->input('catalog'));
         }
-        $products = $products->where('price', '>', $request->min);
-        $products = $products->where('price', '<', $request->max);
-        $products = $products->get();
+        //filter price
+        if ($request->filled('min_price') && $request->filled('min_price')){
+            $query->whereBetween('price', [$request->input('min_price'), $request->input('max_price')]);
+        }
+        //filter rating
+        $filterRatingProductID  = Rate::select('product_ID', DB::raw('round(avg(star)) as avgstar'))
+                           ->groupBy('product_ID')
+                           ->having('avgstar', '=', $request->input('rating'));
+        if ($request->filled('rating')) {
+            $query->where('id', $filterRatingProductID->pluck('product_ID'));
+        }
+       
+
+
+        $products = $query->get();
         return view('/client/products', compact('products', 'catalogs'));
     }
 }

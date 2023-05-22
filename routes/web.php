@@ -39,4 +39,4 @@ Auth::routes();
 // Admin Route
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 //Lọc sản phẩm
-Route::get('/loc', [ProductController::class, 'locsanpham'])->name('locsanpham');
+Route::get('/filter', [ProductController::class, 'filter'])->name('filter');

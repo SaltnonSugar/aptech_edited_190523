@@ -3,6 +3,7 @@
 namespace App\Models;
 use App\Models\ImageProduct;
 use App\Models\Catalog;
+use App\Models\Rate;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -28,7 +29,11 @@ class Product extends Model
     public function catalog() {
         return $this->belongsTo(Catalog::class, 'catalog_ID', 'id');
     }
+    public function rating() {
+        return $this->hasMany(Rate::class, 'product_ID', 'id');
+    }
 
+    
     // public function size() {
     //     return $this->belongsTo(Size::class, 'size_ID', 'id');
     // }

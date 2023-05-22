@@ -19,8 +19,9 @@ class ProductController extends Controller
     {
         $catalogs = Catalog::all();
         $products = Product::all();
+        $ratings = Rate::all();
 
-        return view('/client/products', compact('products', 'catalogs'));
+        return view('/client/products', compact('products', 'catalogs', 'ratings'));
     }
 
     public function show($id)

@@ -1,0 +1,90 @@
+
+.form-check-input:checked{
+    background-color: cadetblue;
+    border-color: cadetblue;
+
+  }
+  .form-range::-webkit-slider-thumb{
+    width:1rem;height:1rem;margin-top:-.25rem;
+    background-color:cadetblue;
+.form-range::-moz-range-thumb{width:1rem;height:1rem;
+    background-color:cadetblue;
+}}
+.form-check-input:checked[type=radio]{
+    background-image: url('../images/svg/star.svg');
+}
+.rating {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row-reverse;
+  }
+  
+  .rating input {
+    display: none;
+  }
+  
+  .rating label {
+    color: #ddd;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  .rating label:before {
+    content: "\2605";
+  }
+  
+  .rating input:checked ~ label {
+    color: cadetblue;
+  }
+
+  .font-card{
+    font-size: medium;
+}
+.bg-light{
+    background-color: #e9e9e9!important;
+}
+.btn-light{
+    background-color: #e4e4e4!important;
+}
+.card-hover{
+    position: relative;
+    display: none;
+}
+.card-hv-2{
+    display: none;
+    border-radius: 0px 0px 5px 5px;
+    z-index: 1000;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+.view{
+    position: absolute;
+    top: -360px;
+    right: 23px;
+}
+.card:hover .card-hover{
+    display: block;
+    opacity: 1; 
+}
+.card:hover .card-hv-2{
+    display: block;
+}
+.card-order{
+    flex-direction: row;
+  }
+
+.my-button {
+    width: 32px;
+    position: relative;
+    overflow: hidden;
+    height: 32px;
+    background-color: #ccc;
+    color: #000;
+    
+}
+  
+.my-button:hover {
+    width: 150px;
+    order: 2;
+    transition: width 0.5s ease;
+  }

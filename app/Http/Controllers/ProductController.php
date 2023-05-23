@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\Rate;
+use App\Models\Size;
+use App\Models\Color;
 use App\Models\Catalog;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -30,7 +32,6 @@ class ProductController extends Controller
 
 
         $products = Product::findOrFail($id);
-
         $ratings = Rate::where('product_ID', $products->id)->get();
         $rating_sum = Rate::where('product_ID', $products->id)->get()->sum('star');
         if ($ratings->count() > 0) {

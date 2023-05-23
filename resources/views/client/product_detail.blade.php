@@ -66,12 +66,13 @@
                             </ul>
                         </div>
                         <div class="details col-md-6">
+                            <p class="product-category">Danh mục: {{ $products->catalog->catalog_name}}</p>
                             <h3 class="product-title">{{ $products->name }}</h3>
                             @php $ratenum = number_format($rating_value) @endphp
                             <div class="rating">
                                 <div class="stars">
                                     @for($i=1; $i <= $ratenum; $i++)
-                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star text-success"></span>
                                     @endfor
                                     @for($j=$ratenum+1; $j <= 5; $j++)
                                     <span class="fa fa-star"></span>
@@ -87,33 +88,49 @@
                                     @endif
                                 </span>
                             </div>
-                            <p class="product-description">Danh mục: {{ $products->catalog->catalog_name}}</p>
-                            <small class="text-muted">Giá cũ: <s><span>30,990,000.00 VNĐ</span></s></small>
+                           
+                            {{-- <small class="text-muted">Giá cũ: <s><span>30,990,000.00 VNĐ</span></s></small> --}}
                             <h4 class="price">Giá hiện tại: <span>{{ number_format($products->price) }} VNĐ</span></h4>
                             <p class="vote"><strong>100%</strong> hàng <strong>Chất lượng</strong>, đảm bảo
                                 <strong>Uy tín</strong>!</p>
-
+                            <h6 class="description-title"> Mô tả sản phẩm </h6>
+                            <p class="product-description">{{ $products->description }}</p>
+                            <h6 class="sizes">Dung lượng: {{ $products->size->size_name }} </h6>
+                        
+                            <h6 class="colors">Màu sắc: <span class="color" style="background-color: {{ $products->color->color_name}}"></span></h6>
+                            
                             
                             <form action="{{ route('cart.store') }}" method="GET" enctype="multipart/form-data">
                                 <input type="hidden" value="{{ $products->id }}" name="id">
                                 <input type="hidden" value="{{ $products->name }}" name="name">
                                 <input type="hidden" value="{{ $products->price }}" name="price">
                                 <input type="hidden" value="{{ $products->productImages[0]->image }}" name="img">
-                                <label for="soluong">Số lượng đặt mua:</label>
-                                <input type="number" class="form-control" id="soluong" name="quantity" value="1">
-                                <button type="submit" class="add-to-cart btn btn-default" id="btnThemVaoGioHang">
-                                        <i class=" fas fa-light fa-cart-shopping"></i>Thêm vào giỏ hàng
-                                </button>
-                                <a class="like btn btn-default" href="#"><span class="fa fa-heart"></span></a>
+
+                                <div class="buttons d-flex">
+                                    <div class="block">
+                                        <button type="button" class="shadow btn custom-btn btn-danger" data-toggle="modal" data-target="#rating">Đánh giá</button>
+                                    </div>
+    
+                                    <div class="block">
+                                        <button type="submit" class="shadow btn custom-btn btn-danger" id="btnThemVaoGioHang">
+                                            giỏ hàng
+                                        </button>
+                                    </div>
+                                    <div class="block quantity">
+                                        <input type="number" class="form-control" id="soluong" name="quantity" value="1" min="1">
+                                    </div>
+                                </div>
+                                
+                                
                             </form>
 
-                            <button type="submit" class="rounded rate-button btn btn-success" data-toggle="modal" data-target="#exampleModal">Rate this product</button>
+                           
 
-                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="rating" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Rate {{ $products->name }}</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel">Đánh giá sản phẩm <strong>{{ $products->name }} </strong></h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                             </button>
@@ -124,10 +141,10 @@
 
                                                         <input type="hidden" name="product_ID" value="{{ $products->id }}">
                                                         <div class="form-group">
-                                                            <label for="commment">Đánh giá sản phẩm:</label>
+                                                            <label for="commment">Nhận xét:</label>
                                                             <input type="text" class="form-control" name="comment">
                                                         </div>
-                                                        <div class="rating-css">
+                                                        <div class="rating-css text-success">
                                                             <div class="star-icon">
                                                                 <input type="radio" value="1" name="product_rating" checked id="rating1">
                                                                 <label for="rating1" class="fa fa-star"></label>
@@ -144,7 +161,7 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="submit" class="btn btn-success">Gửi</button>
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
                                             </div>
                                         </form>
                                     </div>
@@ -157,100 +174,69 @@
                 </div>
             </div>
         </div>
-
-        <div class="card">
-            <div class="container-fluid">
-                <h3>Thông tin chi tiết về Sản phẩm</h3>
-                <div class="row">
-                    <div class="col">
-                        {{ $products->description }}
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 
 
     {{-- Hiển thị sản phẩm liên quan --}}
-    <!-- Danh sách sản phẩm -->
-    <section class="text-center">
-        <div class="container">
-            <h3 class="jumbotron-heading">Sản phẩm liên quan</h3>
-        </div>
-    </section>
 
-
-    <!-- Giải thuật duyệt và render Danh sách sản phẩm theo dòng, cột của Bootstrap -->
-    <div class="danhsachsanpham py-5 bg-light">
-        <div class="container">
-            <div class="row">
-                @foreach ($related_products as $related_product)
-                    <div class="col-md-4">
-                        <div class="card mb-4 shadow-sm">
-                            <a href="/products/{{ $related_product->id }}">
-                                <img class="bd-placeholder-img card-img-top" width="100%" height="350"
-                                     src="{{ url( $related_product->productImages[0]->image) }}">
-                            </a>
-                            <div class="card-body">
-                                <a href="">
-                                    <h5>{{$related_product->name}}</h5>
-                                </a>
-                                <h6>Điện thoại</h6>
-                                <p class="card-text">Sản phẩm của Apple</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <a class="btn btn-sm btn-outline-secondary"
-                                           href="/products/{{ $related_product->id }}">Xem chi tiết</a>
-                                    </div>
-                                    <small class="text-muted text-right">
-                                        <s>12,600,000.00 VNĐ</s>
-                                        <b>{{ number_format($related_product->price)}} VNĐ</b>
-                                    </small>
-                                </div>
-                                <form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">
-                                    @csrf
-                                    <input type="hidden" value="{{ $related_product->id }}" name="id">
-                                    <input type="hidden" value="{{ $related_product->name }}" name="name">
-                                    <input type="hidden" value="{{ $related_product->price }}" name="price">
-                                    <input type="hidden" value="{{ $related_product->productImages[0]->image }}"
-                                           name="img">
-                                    <input type="hidden" value="1" name="quantity">
-                                    <button class="btn btn-success" style="margin-top: 10px;"><i
-                                            class=" fas fa-light fa-cart-shopping"></i>Thêm vào giỏ hàng
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
+    <div class="container similar-products my-4">
+        <hr>
+        <h3 class="mb-4">Sản phẩm tương tự</h3>
+        <div class="row">
+            @foreach($related_products as $row)
+            <div class="col-md-3">
+                <div class="similar-product">
+                    <a href="/products/{{ $row->id }}">
+                        <img class="w-100" src="{{ url( $row->productImages[2]->image) }}" alt="Preview">
+                    </a>
+                    <p class="title overflow-text ">{{$row->name}}</p>
+                    <p class="price text-danger">{{ number_format($row->price)}} VND</p>
+                </div>
             </div>
+            @endforeach
         </div>
     </div>
 
     <!-- Đánh giá của khách hàng -->
-    <h2 class="ml-3 font-weight-bolder">Đánh giá của khách hàng</h2>
-    <div class="col">
-        @foreach($ratings as $rating)
-        <div class="border rounded border-1 border-primary p-2 pl-3 mt-3">
-            <label for="" class="text-danger font-weight-bolder">{{ $rating->users->name}}</label>
-            <br>
-            <small> {{ $rating->created_at->format('d M Y') }}</small>
-            <br>
-            @php $user_rate = $rating->star @endphp
-                <div class="rating">
-                    <div class="stars">
-                        @for($i=1; $i <= $user_rate; $i++)
-                        <span class="fa fa-star checked"></span>
-                        @endfor
-                        @for($j=$user_rate+1; $j <= 5; $j++)
-                        <span class="fa fa-star"></span>
-                        @endfor
+
+    <div class="container my-4">
+        <hr>
+        <h3 class="mb-4">Đánh giá sản phẩm</h3> 
+        <div class="col">
+            @foreach($ratings as $rating)
+            <div class="d-flex flex-start">
+                <img class="rounded-circle shadow-1-strong avatar"
+                    src="{{ url('./img/icon/no_avatar.jpg')}}" alt="avatar" width="65"
+                    height="65" />
+            <div class="flex-grow-1 flex-shrink-1">
+                <div>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <p class="font-weight-bolder mb-1">
+                            {{ $rating->users->name}} <span class="small">- {{ $rating->created_at->format('d M Y') }}</span>
+                        </p>
                     </div>
+                    @php $user_rate = $rating->star @endphp
+                    <div class="rating text-success">
+                        <div class="stars">
+                            @for($i=1; $i <= $user_rate; $i++)
+                            <span class="fa fa-star checked"></span>
+                            @endfor
+                            @for($j=$user_rate+1; $j <= 5; $j++)
+                            <span class="fa fa-star"></span>
+                            @endfor
+                        </div>
+                    </div>
+                    <p>
+                        {{ $rating->comment }}
+                    </p>
                 </div>
-            <hr>
-            <p>Nhận xét: {{ $rating->comment }}</p>
+            </div>
+            </div>
+            @endforeach
         </div>
-        @endforeach
+                  
+         
+       
     </div>
 
 </main>

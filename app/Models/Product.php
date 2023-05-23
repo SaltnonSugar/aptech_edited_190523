@@ -34,12 +34,12 @@ class Product extends Model
     }
 
     
-    // public function size() {
-    //     return $this->belongsTo(Size::class, 'size_ID', 'id');
-    // }
+    public function size() {
+        return $this->belongsTo(Size::class, 'size_ID', 'id');
+    }
 
-    // public function color() {
-    //     return $this->belongsTo(Color::class, 'color_ID', 'id');
-    // }
+    public function color() {
+        return $this->belongsTo(Color::class, 'color_ID', 'id');
+    }
 
 }

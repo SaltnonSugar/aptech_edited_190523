@@ -1,0 +1,22 @@
+.carousel-item {
+    position: relative;
+  }
+
+  .carousel-caption {
+    max-width: 600px;
+    bottom: inherit !important;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+  }
+
+  .hero-social {
+    margin: 1rem 0;
+  }
+
+  .hero-social a {
+    color: #fff;
+    display: inline-block;
+    font-size: 16px;
+    margin: 0 8px;
+  }

@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
 
     <style>
         /* Importing fonts from Google */
@@ -130,23 +129,24 @@
                 width="200" alt="google logo png" />
         </div>
         <div class="text-center mt-4 name">
-            <strong>Google Admin</strong </div>
-            <form class="p-3 mt-3" method="post" action="{{ route('admin.checklogin') }}">
-                @csrf
-                <div class="form-field d-flex align-items-center">
-                    <span class="far fa-user"></span>
-                    <input type="text" placeholder="Email" required autofocus name="email">
-                </div>
-                <div class="form-field d-flex align-items-center">
-                    <span class="fas fa-key"></span>
-                    <input type="password" placeholder="Password" required name="password">
-                </div>
-                <button type="submit" class="btn mt-3">Login</button>
-            </form>
-            <div class="text-center fs-6">
-                <a href="#">Forget password?</a> or <a href="/register">Register</a>
-            </div>
+            <strong>Google Admin</strong>
         </div>
+        <form class="p-3 mt-3" method="post" action="{{ route('admin.checklogin') }}">
+            @csrf
+            <div class="form-field d-flex align-items-center">
+                <span class="fas fa-user"></span>
+                <input type="text" placeholder="Email" required autofocus name="email">
+            </div>
+            <div class="form-field d-flex align-items-center">
+                <span class="fas fa-key"></span>
+                <input type="password" placeholder="Password" required name="password">
+            </div>
+            <button type="submit" class="btn mt-3">Login</button>
+        </form>
+        <div class="text-center fs-6">
+            <a href="#">Forget password?</a> or <a href="/register">Register</a>
+        </div>
+    </div>
 </body>
 
 </html>

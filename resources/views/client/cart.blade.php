@@ -6,15 +6,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Tiny Shop| Chuyên đồ điện tử</title>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{{ url('./vendor/bootstrap/css/bootstrap.min.css') }}" type="text/css">
-    <!-- Font awesome -->
-    <link rel="stylesheet" href="{{ url('./vendor/font-awesome/css/font-awesome.min.css') }}" type="text/css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- Tailwind -->
-    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <!-- Custom css - Các file css do chúng ta tự viết -->
-    <link rel="stylesheet" href="{{ url('./css/app.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url('./css/cart.css') }}" type="text/css">
 </head>
 
 @include('client.header')
@@ -27,85 +21,107 @@
     </script>
 @endif
 <main role="main">
+        <section class="jumbotron text-center">
+            <div class="container">
+                <h3 class="jumbotron-heading">Giỏ hàng của bạn</h3>
+                <p class="lead text-muted">Các sản phẩm với chất lượng, uy tín, cam kết từ nhà Sản xuất, phân phối và
+                    bảo hành 
+                    chính hãng.</p>
+            </div>
+        </section>
         <div class="container mt-4">
             <div id="thongbao" class="alert alert-danger d-none face" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-
-            <h1 class="text-center">Giỏ hàng</h1>
             <div class="row">
-                <div class="col col-md-12">
-                    <table class="table table-bordered">
+                <div class="table-responsive shopping-cart">
+                    <table class="table">
                         <thead>
                             <tr>
-                                <th>STT</th>
-                                <th>Ảnh đại diện</th>
-                                <th>Tên sản phẩm</th>
-                                <th>Số lượng</th>
-                                <th>Đơn giá</th>
-                                <th>Hành động</th>
+                            <th>Sản phẩm</th>
+                            <th class="text-center">Số lượng</th>
+                            <th class="text-center">Thành tiền</th>
+                            <th class="text-center">Giảm giá</th>
+                            <th class="text-center">
+                                <form action="{{ route('cart.clear') }}" method="POST" >
+                                    @csrf
+                                    <button class="btn btn-sm btn-outline-danger">
+                                        Xóa tất cả
+                                    </button>
+                                </form>
+                            </th>
                             </tr>
                         </thead>
-                        <tbody id="datarow">
-                            @foreach ($cartItems as $item)
+                        <tbody>
+                            @foreach($cartItems as $item)
                             <tr>
-                                <td>{{$item->id}}</td>
                                 <td>
-                                    <img src="{{ $item->attributes->img }}" class="hinhdaidien">
-                                </td>
-                                <td>{{ $item->name }}</td>
-                                <td class="text-right">
-
-                                    <div class="input-group inline-group">
-                                        <div class="input-group-prepend">
-                                        <form action="{{ route('cart.update') }}" method="POST">
-                                            @csrf
-                                            <input type="hidden" name="id" value="{{ $item->id}}" >
-                                            <input type="number" name="quantity" value="{{ $item->quantity }}"
-                                            min="0" class="w-9 ml-2 mb-2 text-center bg-gray-300" />
-
-                                            <button type="submit" class="px-2 pb-2 ml-2 text-white bg-blue-500">update</button>
-                                        </form>
+                                    <div class="product-item">
+                                        <a class="product-thumb" href="/products/{{ $item->id }}"><img src="{{ $item->attributes->img }}" alt="Product"></a>
+                                        <div class="product-info">
+                                            <h4 class="product-title"><a href="/products/{{ $item->id }}">{{ $item->name }}</a></h4>
+                                            <span><em>Dung lượng:</em> {{ $item->size}}</span>
+                                            <span><em>Màu sắc:</em> {{$item->color}}</span>
                                         </div>
                                     </div>
                                 </td>
-                                <td class="text-right">{{ number_format($item->price) }}</td>
-
-                                <td>
-                                  <form action="{{ route('cart.remove') }}" method="POST">
-                                  @csrf
-                                  <input type="hidden" value="{{ $item->id }}" name="id">
-                                  <button id="delete_1" data-sp-ma="2" class="btn btn-danger btn-delete-sanpham">
-                                        <i class="fa fa-trash" aria-hidden="true"></i> Xóa
-`                                 </button>
-                                  </form>
+                                <td class="text-center">
+                                    <div class="count-input">
+                                        <form id="cartUpdate" action="{{ route('cart.update') }}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="id" value="{{ $item->id}}" >
+                                            <input type="number" class="form-control" name="quantity" value="{{ $item->quantity }}" min="1">
+                                        </form>
+                                    </div>
+                                </td>
+                                <td class="text-center text-lg text-medium">{{ number_format($item->price) }} VND</td>
+                                <td class="text-center text-lg text-medium">_</td>
+                                <td class="text-center"> 
+                                    <form action="{{ route('cart.remove') }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" value="{{ $item->id }}" name="id">
+                                        <button class="btn btn-danger">
+                                              <i class="fa fa-trash"></i>
+                                      </button>
+                                    </form>
                                 </td>
                             </tr>
                             @endforeach
                         </tbody>
                     </table>
-                    <div>
-                         Tổng thanh toán: {{ number_format(Cart::getTotal()) }} VNĐ
-                    <div class="row gap-3">
-                            <a href="{{ route('home') }}" class="btn btn-warning btn-md"><i class="fa fa-arrow-left"
-                            aria-hidden="true"></i>&nbsp;Quay về trang chủ</a>
-                          <form action="{{ route('cart.clear') }}" method="POST" >
-                            @csrf
-                            <button id="delete_1" data-sp-ma="2" class="btn btn-danger btn-delete-sanpham">
-                                        <i class="fa fa-trash" aria-hidden="true"></i> Xóa tất cả
-`                           </button>
-                          </form>
-
-                          <a href="{{ route('checkout') }}" class="btn btn-primary btn-md"><i
-                            class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;Thanh toán</a>
+                </div>
+                <div class="shopping-cart-footer">
+                    <div class="column">
+                        <form class="coupon-form" method="post">
+                        <input class="form-control form-control-sm" type="text" placeholder="Mã giảm giá" required>
+                        <button class="btn btn-outline-primary btn-sm" type="submit">Áp dụng</button>
+                        </form>
+                    </div>
+                    <div class="column text-lg">Tổng tiền: <span class="text-medium">{{ number_format(Cart::getTotal()) }} VND</span></div>
+                </div>
+                <div class="shopping-cart-footer">
+                    <div class="column"><a class="btn btn-outline-secondary" href="{{ route('home') }}"><i class="icon-arrow-left"></i>&nbsp;Quay về</a></div>
+                    <div class="column">
+                        <button id="submitUpdateCart" class="btn btn-primary" data-toast-position="topRight" style="width:120px">Cập nhật</button>
+                        <button class="btn btn-success" style="width:120px"> <a href="{{ route('checkout') }}">Thanh toán </a></button>
                     </div>
                 </div>
             </div>
         </div>
-        </div>
-    </main>
+    </div>
+</main>
+<script>
+    // update cart
+    var form = document.getElementById('cartUpdate');
+    var submitButton = document.getElementById('submitUpdateCart');
+
+   
+    submitButton.addEventListener('click', function() {
+    form.submit();
+    });
+</script>
 
 @include('client.footer')
 

@@ -50,7 +50,7 @@ class CheckOutController extends Controller
         //gui mail xac nhan
         // Mail::send('mails.order_mail', compact('order'), function($email) use($order){ 
         //     $email->subject('Xác nhận đơn hàng') ;
-        //     $email->to($order->user_email, $order->user_name);
+        //     $email->to($order->user->email, $order->user->name);
         // });
         
         //Huy don hang

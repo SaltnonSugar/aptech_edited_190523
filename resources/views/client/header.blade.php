@@ -28,13 +28,6 @@
         </script>
     @endif
     <!-- header -->
-
-    
-       
-        {{-- <form class="form-inline mt-2 mt-md-0" method="GET" action="/client/search">
-                    <input class="form-control mx-0 rounded-left" name="search" type="text" placeholder="Tìm kiếm" aria-label="Search">
-                    <button class="btn btn-success my-2 my-sm-0 mx-0 rounded-right" type="submit"><i class=" fas fa-thin fa-magnifying-glass"></i></button>
-        </form> --}}
     <header class="header">
         <div class="header__top">
             <div class="container">
@@ -102,7 +95,7 @@
             </div>
             <div class="col-lg-6 col-md-6">
               <nav class="header-menu">
-                <ul id="nav_list">
+                <ul id="menu">
                   <li class="active"><a href="{{ route('home') }}">Trang chủ</a></li>
                   <li><a href="{{ route('products.list') }}">Sản phẩm</a></li>
                   <li><a href="{{ route('cart.list') }}">Giỏ hàng</a></li>

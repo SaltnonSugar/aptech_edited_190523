@@ -183,6 +183,8 @@
                                             <input type="hidden" value="{{ $row->id }}" name="id">
                                             <input type="hidden" value="{{ $row->name }}" name="name">
                                             <input type="hidden" value="{{ $row->price }}" name="price">
+                                            <input type="hidden" value="{{ $row->size->size_name }}" name="size">
+                                            <input type="hidden" value="{{ $row->color->color_name }}" name="color">
                                             <input type="hidden" value="{{ $row->productImages[0]->image }}" name="img">
                                             <input type="hidden" value="1" name="quantity">
                                             <button class="btn btn-sm btn-danger w-100">Thêm vào giỏ hàng</button>

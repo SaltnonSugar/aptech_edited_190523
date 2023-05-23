@@ -42,14 +42,23 @@ document.getElementById('prev').onclick = function () {
   document.getElementById('formList').scrollLeft -= widthItem;
 }
 
-
-const listItems = document.querySelectorAll("#nav_list li");
-listItems.forEach(item => {
-  item.addEventListener("click", () => {
-    
-    listItems.forEach(otherLi => otherLi.classList.remove("active"))
-
-    item.classList.add("active");
+const menu = document.getElementById('menu')
+const listItems = menu.getElementsByTagName('li');
+for (var i = 0; i < listItems.length; i++) {
+  var aTag = listItems[i].getElementsByTagName('a')[0];
+  aTag.addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default link behavior
+    // Remove the "active" class from all <li> elements
+    for (var j = 0; j < listItems.length; j++) {
+      listItems[j].classList.remove('active');
+    }
+    // Add the "active" class to the parent <li> element
+    this.parentNode.classList.add('active');
   });
-});
+}
+
+
+
+
+
 

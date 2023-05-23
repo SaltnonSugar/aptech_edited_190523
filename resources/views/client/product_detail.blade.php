@@ -104,6 +104,8 @@
                                 <input type="hidden" value="{{ $products->id }}" name="id">
                                 <input type="hidden" value="{{ $products->name }}" name="name">
                                 <input type="hidden" value="{{ $products->price }}" name="price">
+                                <input type="hidden" value="{{ $products->size->size_name }}" name="size">
+                                <input type="hidden" value="{{ $products->color->color_name }}" name="color">
                                 <input type="hidden" value="{{ $products->productImages[0]->image }}" name="img">
 
                                 <div class="buttons d-flex">

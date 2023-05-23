@@ -13,10 +13,6 @@ class Order extends Model
         'id',
         'created_at',
         'user_ID',
-        'user_name',
-        'user_address',
-        'user_phone',
-        'user_email',
         'amount',
         'total',
         'payment_method',
@@ -28,4 +24,8 @@ class Order extends Model
     public function orderDetails() {
         return $this->hasMany(OrderDetail::class);
     }
+    public function user() {
+        return $this->belongsTo(User::class, 'user_ID', 'id');
+    }
+
 }

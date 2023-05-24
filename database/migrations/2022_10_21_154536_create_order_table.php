@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('accept_status')->default('0');
             $table->integer('payment_status')->default('0');
             $table->string('payment_method');
-            $table->integer('ship_status')->default('0');
+            $table->integer('delivery_status')->default('0');
             $table->timestamps();
         });
     }

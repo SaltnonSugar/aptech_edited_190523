@@ -28,7 +28,7 @@
     </section>
 
 
-    <div class="row mt-4">
+    <div class="row mt-4 mb-5">
         <div class="col-lg-3 pb-3">
             <form action={{ route('filter') }} method="GET">
                 <div class="input-group">

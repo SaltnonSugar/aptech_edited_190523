@@ -29,7 +29,7 @@
                     chính hãng.</p>
             </div>
         </section>
-        <div class="container mt-4">
+        <div class="container bottom mt-4">
             <div id="thongbao" class="alert alert-danger d-none face" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">×</span>
@@ -62,8 +62,8 @@
                                         <a class="product-thumb" href="/products/{{ $item->id }}"><img src="{{ $item->attributes->img }}" alt="Product"></a>
                                         <div class="product-info">
                                             <h4 class="product-title"><a href="/products/{{ $item->id }}">{{ $item->name }}</a></h4>
-                                            <span><em>Dung lượng:</em> {{ $item->size}}</span>
-                                            <span><em>Màu sắc:</em> {{$item->color}}</span>
+                                            <span><em>Dung lượng:</em> {{ $item->size }}</span>
+                                            <span><em>Màu sắc:</em> {{$item->color }}</span>
                                         </div>
                                     </div>
                                 </td>

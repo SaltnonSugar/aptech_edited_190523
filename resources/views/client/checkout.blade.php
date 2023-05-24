@@ -37,29 +37,29 @@
                     <h4 class="mb-3">Thông tin khách hàng</h4>
                    
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-12 mb-2">
                                 <label for="user_name">Họ tên</label>
                                 <input type="text" class="form-control" name="user_name" id="user_name"
                                     value="{{ Auth::user()->name }}">
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-12 mb-2">
                                 <label for="user_address">Địa chỉ</label>
                                 <input type="text" class="form-control" name="user_address" id="user_address"
                                 value="{{ Auth::user()->address }}" >
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-12 mb-2">
                                 <label for="user_phone">Điện thoại</label>
                                 <input type="text" class="form-control" name="user_phone" id="user_phone"
                                     value="{{ Auth::user()->phone }}">
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-12 mb-2">
                                 <label for="user_email">Email</label>
                                 <input type="text" class="form-control" name="user_email" id="user_email"
                                     value="{{ Auth::user()->email }}">
                             </div>
                         </div>
 
-                        <h4 class="mb-3">Hình thức thanh toán</h4>
+                        <h4 class="mb-2">Hình thức thanh toán</h4>
 
                         <div class="d-block my-3">
                             <div class="custom-control custom-radio">
@@ -79,7 +79,7 @@
                             </div>
                         </div>
                         <hr class="mb-4">
-                        <button class="btn btn-primary btn-lg btn-block" type="submit" name="btnDatHang">Đặt
+                        <button class="btn btn-success btn-lg btn-block mb-3 " type="submit" name="btnDatHang">Đặt
                             hàng</button>
                 </div>
             </div>

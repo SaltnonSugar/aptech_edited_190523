@@ -14,23 +14,12 @@ class AdminCategoriesController extends Controller
         return view('/admin/admin_catalog/catalogs', compact('catalogs'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function create()
     {
         //admin thêm danh mục
         return view('/admin/admin_catalog/catalogs_create');
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         Catalog::create([

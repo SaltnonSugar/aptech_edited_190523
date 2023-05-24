@@ -10,8 +10,12 @@
     </div>
     <!-- Content Row -->
     <div class="row">
+        {{-- Alert --}}
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         @if (session('message'))
-            <h5 class="alert alert-success">{{ session('message') }} </h5>
+            <script>
+                swal("{{ session('message') }}");
+            </script>
         @endif
         <table class="table table-striped">
             <thead>

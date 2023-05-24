@@ -4,7 +4,7 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Thêm sản phẩm mới</h1>
+        <h1 class="h3 mb-0 text-gray-800">Thêm các danh mục cho sản phẩm</h1>
         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                 class="fas fa-download fa-sm text-white-50"></i> Backup Data</a>
     </div>
@@ -30,7 +30,23 @@
             @csrf
           <div class="form-group">
             <label for="catalog_name">Tên danh mục:</label>
-            <input type="" class="form-control" id="catalog_name" placeholder="Thêm tên" name="catalog_name">
+            <input type="text" class="form-control" id="catalog_name" placeholder="Thêm tên" name="catalog_name">
+          </div>
+          <button type="submit" class="btn btn-primary">Xác nhận</button>
+        </form>
+        <form method="POST" action="/admin/colors/store" enctype="multipart/form-data">
+            @csrf
+          <div class="form-group">
+            <label for="color_name">Màu sắc:</label>
+            <input type="" class="form-control" id="color_name" placeholder="Thêm màu" name="color_name">
+          </div>
+          <button type="submit" class="btn btn-primary">Xác nhận</button>
+        </form>
+        <form method="POST" action="/admin/sizes/store" enctype="multipart/form-data">
+            @csrf
+          <div class="form-group">
+            <label for="size_name">Dung lượng:</label>
+            <input type="" class="form-control" id="size_name" placeholder="Thêm dung lượng" name="size_name">
           </div>
           <button type="submit" class="btn btn-primary">Xác nhận</button>
         </form>

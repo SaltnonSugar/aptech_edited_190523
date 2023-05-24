@@ -14,7 +14,8 @@ class ProductController extends Controller
 {
     public function index()
     {
-        return view('/client/index');
+        $demoProducts = Product::orderByRaw('RAND()')->take(4)->get();
+        return view('/client/index', compact('demoProducts'));
     }
 
     public function productList()
@@ -29,8 +30,6 @@ class ProductController extends Controller
     public function show($id)
     {
         //chi tiet san pham
-
-
         $products = Product::findOrFail($id);
         $ratings = Rate::where('product_ID', $products->id)->get();
         $rating_sum = Rate::where('product_ID', $products->id)->get()->sum('star');

@@ -49,7 +49,8 @@
                                             <a href="/register">Đăng ký</a>
                                     @endif
                                     @else
-                                        <a href="#">{{ Auth::user()->name }}</a>
+                                        {{-- <a href="#">{{ Auth::user()->name }}</a> --}}
+                                        <a href="{{ route('user.profile')}}">Tài khoản </a>
                         
                                     @if (Auth::check())
                                         <a data-toggle="modal" data-target="#exampleModal" href="{{ route('logout') }}" >
@@ -107,8 +108,8 @@
                 <div class="header-nav-option">
                     <a href="" class="search-switch"><img src="{{ url('./img/icon/search.png') }}" alt=""></a>
                     <a href="#"><img src="{{ url('./img/icon/heart.png') }}" alt=""></a>
-                    <a href="{{ route('cart.list') }}"><img src="{{ url('./img/icon/cart.png') }}" alt=""> <span>0</span></a>
-                    <div class="price">$0.00</div>
+                    <a href="{{ route('cart.list') }}"><img src="{{ url('./img/icon/cart.png') }}" alt=""> <span>1</span></a>
+                    <div class="price">{{ number_format(Cart::getTotal()) }} VND</div>
                 </div>
             </div>
 

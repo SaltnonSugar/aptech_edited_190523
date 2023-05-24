@@ -8,6 +8,8 @@ use App\Http\Controllers\Admin\AdminProductsController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\AdminCategoriesController;
+use App\Http\Controllers\Admin\AdminColorsController;
+use App\Http\Controllers\Admin\AdminSizesController;
 
 Route::get('/login', [AdminController::class, 'getLogin'])->name('admin.login');
 Route::post('/login', [AdminController::class, 'postLogin'])->name('admin.checklogin');
@@ -23,7 +25,8 @@ Route::middleware('checkAdmin')->group(function () {
     //Thêm danh mục
     Route::get('/catalogs/create', [AdminCategoriesController::class, 'create'])->name('admin_catalogs.create');
     Route::post('/catalogs/store', [AdminCategoriesController::class, 'store']);
-
+    Route::post('/colors/store', [AdminColorsController::class, 'store']);
+    Route::post('/sizes/store', [AdminSizesController::class, 'store']);
     //Danh sách sản phẩm trong kho
     Route::get('/products', [AdminProductsController::class, 'index'])->name('admin_products.list');
     //Thêm sản phẩm

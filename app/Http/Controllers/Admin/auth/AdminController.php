@@ -13,7 +13,8 @@ use App\Http\Requests\AdminFormRequest;
 class AdminController extends Controller
 {
     public function list() {
-        $admins = Admin::all();
+        //lấy ra danh sách admin có lv=0
+        $admins = Admin::where('lv', 0)->get();
         return view('AdminManager.auth.admins', compact('admins'));
     }
     public function index(){
@@ -55,24 +56,13 @@ class AdminController extends Controller
         Auth::guard('admin')->logout();
         return redirect()->route('admin.login');
 }
-    
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
     public function create()
     {
         //thêm nhân viên
         return view('/AdminManager/auth/admin_create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(AdminFormRequest $request)
     {
         $validatedData = $request->validated();
@@ -92,13 +82,7 @@ class AdminController extends Controller
         return view('AdminManager.auth.admin_update', compact('admins'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(AdminFormRequest $request, int $id)
     {
         $validatedData = $request->validated();
@@ -115,8 +99,8 @@ class AdminController extends Controller
 
     public function destroy(int $id)
     {
-        $admins = Admin::findOrFail($id);
-        $admins->delete();
+        $admin = Admin::where('id', $id);
+        $admin->delete();
         return redirect()->action([AdminController::class, 'list'])->with('message', 'Xóa nhân viên thành công');
     }
 }

@@ -23,7 +23,7 @@
     @include('client.header')
     <main>
         <!-- Contact Section Begin -->
-            <div class="container" style="padding-top: 100px">
+            <div class="container top">
                 <div class="row">
                 <div class="col-lg-6 col-md-6 ">
                     <div class="contact-text">

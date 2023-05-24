@@ -4,9 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ContactController;
-use App\Http\Controllers\Admin\AdminProductsController;
-use App\Http\Controllers\Admin\OrderController;
-use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\UserClientController;
 use App\Http\Controllers\CheckOutController;
 use App\Http\Controllers\RatingController;
 use Illuminate\Routing\RouteRegistrar;
@@ -21,7 +19,7 @@ Route::get('/products', [ProductController::class, 'productList'])->name('produc
 Route::get('/products/{id}', [ProductController::class, 'show']);
 
 
-//Cart
+//Cart, rating and update profile information
 Route::middleware('auth')->group(function () {
     Route::get('cart', [CartController::class, 'cartList'])->name('cart.list');
     Route::get('cart-add', [CartController::class, 'addToCart'])->name('cart.store');
@@ -31,14 +29,14 @@ Route::middleware('auth')->group(function () {
     Route::get('checkout', [CheckOutController::class, 'index'])->name('checkout');
     Route::post('placeorder', [CheckOutController::class, 'placeorder'])->name('place.order');
     Route::post('/rating', [RatingController::class, 'rating']);
+    Route::get('/userprofile', [UserClientController::class, 'index'])->name('user.profile');
+    Route::patch('/userprofile/update/{id}', [UserClientController::class, 'update']);
 });
 Auth::routes();
 
 //Contact
 Route::get('contact', [ContactController::class, 'index'])->name('contact');
 
-// Admin Route
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 //Lọc sản phẩm
 Route::get('/filter', [ProductController::class, 'filter'])->name('filter');
 //Sắp xếp 

@@ -10,6 +10,7 @@
     </div>
     <!-- Content Row -->
     <div class="row">
+       
         {{-- Alert --}}
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         @if (session('message'))

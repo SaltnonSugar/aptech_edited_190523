@@ -26,5 +26,12 @@ class DatabaseSeeder extends Seeder
             'email'=>'admin@gmail.com',
             'password'=>bcrypt('admin123')
         ]);
+        DB::table("size")->insert([
+            'size_name'=>'256GB',
+        ]);
+        DB::table("color")->insert([
+            'color_name'=>'Red',
+        ]);
+
     }
 }

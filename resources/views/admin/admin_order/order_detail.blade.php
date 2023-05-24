@@ -14,19 +14,19 @@
             <hr>
             <div class="form-group">
                 <label for="">Tên khách hàng:</label>
-                <div class="form-control">{{ $order[0]->user_name }}</div>
+                <div class="form-control">{{ $order[0]->user->name }}</div>
             </div>
             <div class="form-group">
                 <label for="">Số điện thoại:</label>
-                <div class="form-control">{{ $order[0]->user_phone }}</div>
+                <div class="form-control">{{ $order[0]->user->phone }}</div>
             </div>
             <div class="form-group">
                 <label for="">Email:</label>
-                <div class="form-control">{{ $order[0]->user_email }}</div>
+                <div class="form-control">{{ $order[0]->user->email }}</div>
             </div>
             <div class="form-group">
                 <label for="">Địa chỉ:</label>
-                <div class="form-control">{{ $order[0]->user_address }}</div>
+                <div class="form-control">{{ $order[0]->user->address }}</div>
             </div>
             <div class="form-group">
                 <label for="">Hình thức thanh toán:</label>

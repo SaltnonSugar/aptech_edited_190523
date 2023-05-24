@@ -19,8 +19,7 @@ Route::get('client/products', function () {
 Route::get('/', [ProductController::class, 'index'])->name('home');
 Route::get('/products', [ProductController::class, 'productList'])->name('products.list');
 Route::get('/products/{id}', [ProductController::class, 'show']);
-//Tính năng tìm kiếm
-Route::get('client/search', [ProductController::class, 'search']);
+
 
 //Cart
 Route::middleware('auth')->group(function () {
@@ -42,5 +41,5 @@ Route::get('contact', [ContactController::class, 'index'])->name('contact');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 //Lọc sản phẩm
 Route::get('/filter', [ProductController::class, 'filter'])->name('filter');
-//Sắp xếp theo giá
+//Sắp xếp 
 Route::get('/sort', [ProductController::class, 'sort'])->name('sort');

@@ -7,6 +7,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\UserClientController;
 use App\Http\Controllers\CheckOutController;
 use App\Http\Controllers\RatingController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Routing\RouteRegistrar;
 use Illuminate\Support\Facades\Auth;
 
@@ -37,6 +38,8 @@ Auth::routes();
 //Contact
 Route::get('contact', [ContactController::class, 'index'])->name('contact');
 
+// Admin Route
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 //Lọc sản phẩm
 Route::get('/filter', [ProductController::class, 'filter'])->name('filter');
 //Sắp xếp 

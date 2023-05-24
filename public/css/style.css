@@ -226,7 +226,12 @@
     position: relative;
   }
   
-  .header-menu ul li.active a:after {
+  /* .header-menu ul li.active a:after {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+  } */
+  .active a:after {
     -webkit-transform: scale(1);
     -ms-transform: scale(1);
     transform: scale(1);

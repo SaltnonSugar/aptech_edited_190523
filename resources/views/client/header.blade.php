@@ -99,7 +99,7 @@
                   <li class="active"><a href="{{ route('home') }}">Trang chủ</a></li>
                   <li><a href="{{ route('products.list') }}">Sản phẩm</a></li>
                   <li><a href="{{ route('cart.list') }}">Giỏ hàng</a></li>
-                  <li><a href="">Liên hệ</a></li>
+                  <li><a href="{{ route('contact') }}">Liên hệ</a></li>
                 </ul>
               </nav>
             </div>
@@ -128,7 +128,25 @@
     <script
 src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://kit.fontawesome.com/8e47a4543e.js" crossorigin="anonymous"></script>
-<script src="{{ url('./js/main.js') }}"></script>
+<script>
+    
+    // // //Menu active
+    // const menu = document.getElementById('menu')
+    // const listItems = menu.getElementsByTagName('li');
+    // for (var i = 0; i < listItems.length; i++) {
+    // var aTag = listItems[i].getElementsByTagName('a')[0];
+    // aTag.addEventListener('click', function(event) {
+    //     event.preventDefault(); // Prevent the default link behavior
+    //     // Remove the "active" class from all <li> elements
+    //     for (var j = 0; j < listItems.length; j++) {
+    //     listItems[j].classList.remove('active');
+    //     }
+    //     // Add the "active" class to the parent <li> element
+    //     this.parentNode.classList.add('active');
+    // });
+    // }
+
+</script>
 
 </body>
 </html>

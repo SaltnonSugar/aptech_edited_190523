@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Admin\AdminProductsController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\UserController;
@@ -34,7 +35,8 @@ Route::middleware('auth')->group(function () {
 });
 Auth::routes();
 
-// Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
+//Contact
+Route::get('contact', [ContactController::class, 'index'])->name('contact');
 
 // Admin Route
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

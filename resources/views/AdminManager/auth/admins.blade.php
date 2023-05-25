@@ -40,10 +40,10 @@
                     @endif
                 <td>
                     <button type="button" class="btn btn-success"><a href="/admin/admins/edit/{{ $row->id }}"><i class="fas fa-edit"></i></a></button>
-                    <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal1"><i class="far fa-trash-alt"></i></button>
+                    <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal{{ $row->id }}"><i class="far fa-trash-alt"></i></button>
                 </td>
             
-                    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="deleteModal{{ $row->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">

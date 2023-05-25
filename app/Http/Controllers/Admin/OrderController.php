@@ -55,7 +55,7 @@ class OrderController extends Controller
         $order = Order::findOrFail($id);
         $order->accept_status = $request->input('accept_status');
         $order->payment_status = $request->input('payment_status');
-        $order->ship_status = $request->input('ship_status');
+        $order->delivery_status = $request->input('delivery_status');
         $order->save();
         return redirect()->action([OrderController::class, 'index'])->with('message', 'Cập nhật đơn hàng thành công');
     }

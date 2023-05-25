@@ -75,9 +75,9 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <select class="form-control" name="ship_status">
-                            <option {{ $order[0]->ship_status == '0' ? 'Chọn': '' }} value="0">Chưa giao hàng</option>
-                            <option {{ $order[0]->ship_status == '1' ? 'Chọn': '' }} value="1">Giao hàng thành công</option>
+                        <select class="form-control" name="delivery_status">
+                            <option {{ $order[0]->delivery_status == '0' ? 'Chọn': '' }} value="0">Chưa giao hàng</option>
+                            <option {{ $order[0]->delivery_status == '1' ? 'Chọn': '' }} value="1">Giao hàng thành công</option>
                         </select>
                     </div>
                     <button type="submit" class="btn btn-primary">Cập nhật</button>

@@ -81,7 +81,7 @@
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label for="address">Địa chỉ</label>
-                                        <input name="address" type="text" class="form-control" id="address" placeholder="Nhập địa chỉ" value={{$user->address}}>
+                                        <input name="address" class="form-control" id="address" placeholder="Nhập địa chỉ" value={{$user->address}}>
                                     </div>
                                 </div>
                             </div>

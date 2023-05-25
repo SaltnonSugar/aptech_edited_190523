@@ -38,7 +38,7 @@ class ProductController extends Controller
         } else {
             $rating_value = 0;
         }
-        $related_products = Product::where('catalog_ID', $products->catalog_ID)->limit(3)->get();
+        $related_products = Product::where('catalog_ID', $products->catalog_ID)->limit(4)->get();
         return view('/client/product_detail', compact('products', 'related_products', 'ratings', 'rating_value'));
     }
 

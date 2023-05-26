@@ -97,7 +97,7 @@
             <div class="col-lg-6 col-md-6">
               <nav class="header-menu">
                 <ul id="menu">
-                  <li class="active"><a href="{{ route('home') }}">Trang chủ</a></li>
+                  <li class="active"><a href="/">Trang chủ</a></li>
                   <li><a href="{{ route('products.list') }}">Sản phẩm</a></li>
                   <li><a href="{{ route('cart.list') }}">Giỏ hàng</a></li>
                   <li><a href="{{ route('contact') }}">Liên hệ</a></li>

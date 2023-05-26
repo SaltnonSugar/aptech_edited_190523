@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
 class UserClientController extends Controller
@@ -27,6 +28,7 @@ class UserClientController extends Controller
         } else if ($user->password != $confirmPassword) {
             return redirect()->action([UserClientController::class, 'index'])->with('message', 'Mật khẩu không trùng khớp!');
         } else {
+            $user->password = Hash::make($user->password);
             $user->save();
             return redirect()->action([UserClientController::class, 'index'])->with('message', 'Cập nhật thông tin thành công!');
         }   

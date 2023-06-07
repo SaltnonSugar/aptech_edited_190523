@@ -56,3 +56,9 @@ Run the dev server (the output will give the address):
 ```sh
 php artisan serve
 ```
+Login with Admin:
+```sh
+admin@admin.com
+admin123
+```
+or You can find that in seeder file
